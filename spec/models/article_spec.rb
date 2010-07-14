@@ -44,6 +44,15 @@ describe Article do
     a.save!  # make sure database column is big enough
   end
 
+  describe "published_on" do
+    it "can be created with a Date object" do
+       @valid_attributes[:published_on] = Date.new(2010, 1, 13)
+      a = Article.new(@valid_attributes)
+      a.should be_valid
+    end
+
+  end
+
   describe "allows author to be blank (if unknown)" do
     it "which can be empty string" do
       @valid_attributes[:author] = nil
