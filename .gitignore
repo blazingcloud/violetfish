@@ -1,0 +1,9 @@
+*~
+.DS_Store
+.idea/*
+.*.swp
+*.swo
+.rvmrc
+db/*.sqlite3
+*.log
+
