@@ -3,6 +3,10 @@ class ArticlesController < ApplicationController
       @articles = Article.all(:order => "published_on DESC")
   end
 
+  def index_edit
+      @articles = Article.all(:order => "published_on DESC")
+  end
+
   def new
     @article = Article.new
     render "edit"

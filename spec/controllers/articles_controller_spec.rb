@@ -38,6 +38,14 @@ describe ArticlesController do
       end
     end
 
+    describe "GET index edit" do
+      it "renders" do
+        get :index_edit
+        assigns[:articles].should == [@article1, @article2, @article3, @article4]
+        response.should render_template('index_edit')
+      end
+    end
+
     describe "GET new" do
       it "renders" do
         get :new
