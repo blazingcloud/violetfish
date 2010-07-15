@@ -55,6 +55,14 @@ describe ArticlesController do
           updated_article[:author].should == @a2[:author]
           response.should render_template('edit')
         end
+
+        it "updates an article, sending creation time should ignore sent attr" do
+          put :update, :id => @article1[:id], :article => @a2.merge(:created_at =>(Time.now-100.days))
+
+          updated_article = assigns[:article]
+          updated_article[:created_at].should > (Time.now - 1.days)
+        end
+
       end
     end
 
@@ -74,7 +82,13 @@ describe ArticlesController do
       a.url.should == @a1[:url]
       response.should redirect_to(edit_article_path(a))
     end
-    
+
+    it "creates an article, sending creation time should ignore sent attr" do
+      post :create, :article => @a1.merge(:created_at =>(Time.now-100.days))
+      a = Article.find_by_title(@a1[:title])
+      a.created_at.should > (Time.now - 1.days)
+    end
+
     it "with invalid params renders new with errors" do
       invalid_attrs = @a1.merge(:title => "")
       post :create, :article => invalid_attrs

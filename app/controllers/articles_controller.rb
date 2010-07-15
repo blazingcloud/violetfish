@@ -9,7 +9,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params[:article])
+    attrs = params[:article]
+    @article = Article.new :title => attrs[:title],
+                           :url => attrs[:url],
+                           :published_on => attrs[:published_on],
+                           :author => attrs[:author]
     if @article.save
       redirect_to edit_article_path(@article)
     else
@@ -24,7 +28,11 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    @article.update_attributes(params[:article])
+    attrs = params[:article]
+    @article.update_attributes :title => attrs[:title],
+                           :url => attrs[:url],
+                           :published_on => attrs[:published_on],
+                           :author => attrs[:author]
     render "edit"
   end
 end
