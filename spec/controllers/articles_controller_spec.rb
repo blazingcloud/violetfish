@@ -28,7 +28,7 @@ describe ArticlesController do
       @article1 = Article.create!(@a1)
       @article2 = Article.create!(@a2)
       @article3 = Article.create!(@a3)
-      @article4 = Article.create!(@a4)      
+      @article4 = Article.create!(@a4)
     end
     describe "GET index" do
       it "renders" do
@@ -43,6 +43,18 @@ describe ArticlesController do
         get :new
         assigns[:article].should be_new_record
         response.should render_template('edit')
+      end
+
+      describe "PUT update" do
+        it "updates an article" do
+          put :update, :id => @article1[:id], :article => @a2
+
+          updated_article = assigns[:article]
+          updated_article[:title].should == @a2[:title]
+          updated_article[:url].should == @a2[:url]
+          updated_article[:author].should == @a2[:author]
+          response.should render_template('edit')
+        end
       end
     end
 
@@ -60,7 +72,7 @@ describe ArticlesController do
       a = Article.find_by_title(@a1[:title])
       a.title.should == @a1[:title]
       a.url.should == @a1[:url]
-      response.should render_template("edit")
+      response.should redirect_to(edit_article_path(a))
     end
     
     it "with invalid params renders new with errors" do
