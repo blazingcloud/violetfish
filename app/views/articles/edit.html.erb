@@ -18,6 +18,7 @@
 
 <p>
   <%= f.submit @article.new_record? ? 'Create' :'Update' %>
+  <%= button_to "Delete", @article, :confirm => 'Are you sure?', :method => :delete %>
 </p>
   <% end %>
     

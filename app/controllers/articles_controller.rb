@@ -39,4 +39,10 @@ class ArticlesController < ApplicationController
                            :author => attrs[:author]
     render "edit"
   end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to root_path
+  end
 end

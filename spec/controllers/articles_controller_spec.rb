@@ -81,6 +81,15 @@ describe ArticlesController do
         response.should render_template('edit')
       end
     end
+
+    describe "DELETE delete" do
+      it "deletes an article" do
+        id = @article2[:id]
+        delete :destroy, {:id => id}
+        Article.exists?(id).should_not be_true
+        response.should redirect_to(root_path)
+      end
+    end
   end
   describe "POST create" do
     it "creates an article" do

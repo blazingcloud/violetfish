@@ -47,9 +47,15 @@ describe "/articles/edit" do
       response.body.should match /http:\/\/blog\.pluron\.com\/2008\/02\/rails-faster-as\.html/
       response.body.should match /Alexander Dymo/
       response.body.should match "Update"
-      
     end
   end
 
+  describe "delete saved article" do
+    it "should display a delete button" do
+      assigns[:article] = @article1
+      render
+      response.body.should match "Delete"
+    end
+  end
 end
 
