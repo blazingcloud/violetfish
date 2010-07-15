@@ -41,13 +41,13 @@ describe "/articles/edit" do
 
   describe "edit saved article" do
     it "should display article to be edited" do
-      pending
       assigns[:article] = @article2
       render
       response.body.should match /Make Rails Associations Faster by Optimizing Named Blocks/
       response.body.should match /http:\/\/blog\.pluron\.com\/2008\/02\/rails-faster-as\.html/
       response.body.should match /Alexander Dymo/
-      response.body.should match /2008/
+      response.body.should match "Update"
+      
     end
   end
 

@@ -17,7 +17,7 @@
 
 
 <p>
-  <%= f.submit 'Create' %>
+  <%= f.submit @article.new_record? ? 'Create' :'Update' %>
 </p>
   <% end %>
     

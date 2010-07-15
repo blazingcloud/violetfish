@@ -48,8 +48,7 @@ describe ArticlesController do
 
     describe "GET edit" do
       it "renders" do
-        pending
-        get :edit, {:id => 1}
+        get :edit, {:id => @article1[:id]}
         assigns[:article].should == @article1
         response.should render_template('edit')
       end
