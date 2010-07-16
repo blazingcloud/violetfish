@@ -9,13 +9,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100714184734) do
+ActiveRecord::Schema.define(:version => 20100715232325) do
+
+  create_table "article_tags", :force => true do |t|
+    t.integer  "article_id", :null => false
+    t.integer  "version_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", :force => true do |t|
     t.string   "title",        :null => false
     t.text     "url",          :null => false
     t.string   "author"
     t.date     "published_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teches", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "versions", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "tech_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

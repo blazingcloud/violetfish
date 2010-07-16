@@ -21,4 +21,11 @@
   <%= button_to "Delete", @article, :confirm => 'Are you sure?', :method => :delete %>
 </p>
   <% end %>
-    
+
+<% unless @article.new_record? %>
+<%#= form_for(@article.article_tags.build) do |f| %>
+
+
+
+<%# end %>
+<% end %>

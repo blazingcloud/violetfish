@@ -76,4 +76,23 @@ describe Article do
     end
   end
 
+  describe "has many article tags" do
+    it "which are empty with a new article" do
+      a = Factory.build(:article)
+      a.article_tags.should == []
+    end
+
+    it "and versions through article tags" do
+      a = nil
+      lambda {
+        lambda {
+          a = Factory.build(:article)
+          v = Factory.build(:version)
+          a.versions << v
+          a.save
+        }.should change(Version, :count).by(1)
+      }.should change(Article, :count).by(1)
+    end
+  end
+
 end

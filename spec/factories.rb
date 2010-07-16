@@ -9,3 +9,13 @@ Factory.define :article do |f|
   f.author { Faker::Name.name }
   f.published_on Date.today - 1.year
 end
+
+Factory.define :tech do |t|
+  word1 = %w(Rails Gem Bundler Ruby Cucumber)
+  t.name { word1.rand }
+end
+
+Factory.define :version do |v|
+  word1 = ["1.8.6", "1.8.7", "2.0.x", "0.9.x"]
+  v.name { word1.rand }
+end
